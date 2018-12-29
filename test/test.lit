@@ -1,0 +1,4 @@
+x := 12
+var y = "Hello"
+var! const = 23.2
+z := true
