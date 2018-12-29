@@ -1,43 +1,29 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <memory>
 #include "nodes.hpp"
 
 namespace littl {
     class Program : public SyntaxTree {
         public:
-            Program(std::vector<SyntaxTree*> val, SyntaxTree* vals){
-                mainobject = val;
-                subtree = vals;
+            Program(std::vector<SyntaxTree*> val){
+                tree = val;
             };
             virtual ~Program(){
-                delete subtree;
-
-                for(SyntaxTree* node : mainobject){
+                for(SyntaxTree* node : tree){
                     delete node;
                 }
             };
             virtual std::string toCode() const{
                 std::string program;
-                program += "#include <string>\n";
-                program += "#include <iostream>\n";
-                program += "#define out(a) std::cout << a <<std::endl\n";
-                program += "std::string in(){ std::string val; std::getline(std::cin,val); return val;}\n";
-
-                program += subtree->toCode();
-
-
-                program += "int main(){\n";
-                for(SyntaxTree* node : mainobject){
+                for(SyntaxTree* node : tree){
                     program += node->toCode();
                 }
-                program += "}";
-
                 return program;
             };
         private:
-            std::vector<SyntaxTree*> mainobject;
-            SyntaxTree* subtree;
+            std::vector<SyntaxTree*> tree;
     };
 }

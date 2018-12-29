@@ -1,11 +1,12 @@
 %option noyywrap
+%option yylineno
 
 %{
     #include "grammar.tab.h"
 %}
 
 INT                             [1-9][0-9]*
-DECIMAL                         INT\.[0-9]+
+DECIMAL                         [1-9][0-9]*\.[0-9]+
 STRING                          \"[^\n"]*\"
 BOOL                            true|false
 
@@ -13,16 +14,26 @@ NAME                            [a-zA-Z][a-zA-Z0-9._]*
 
 VAR                             var
 CONST                           var!
-ANONYMOUS                       anonymous
 
 IF                              if
 FOR                             for
-PUT                             put
+RETURN                          return
 
 ASSIGN                          "="
 SHORTHANDASSIGN                 ":="
 SEMICOLON                       ";"
 COMMA                           ","
+
+ADD                             "+"
+SUB                             "-"
+MUL                             "*"
+DIV                             "/"
+
+LBRACE                          "{"
+RBRACE                          "}"
+
+LBRACKET                        "("
+RBRACKET                        ")"
 
 WHITESPACE                      [ \r\t\v\f]
 FEED                            \n
@@ -36,16 +47,26 @@ FEED                            \n
 
 {VAR}                           return VAR;
 {CONST}                         return CONST;
-{ANONYMOUS}                     return ANONYMOUS;
 
 {IF}                            return IF;
 {FOR}                           return FOR;
-{PUT}                           return PUT;
+{RETURN}                        return RETURN;
 
 {ASSIGN}                        return ASSIGN;
 {SHORTHANDASSIGN}               return SHORTHANDASSIGN;
 {SEMICOLON}                     return SEMICOLON;
 {COMMA}                         return COMMA;
+
+{ADD}                           return ADD;
+{SUB}                           return SUB;
+{MUL}                           return MUL;
+{DIV}                           return DIV;
+
+{LBRACE}                        return LBRACE;
+{RBRACE}                        return RBRACE;
+
+{LBRACKET}                      return LBRACKET;
+{RBRACKET}                      return RBRACKET;
 
 {NAME}                          return NAME;
 {WHITESPACE}

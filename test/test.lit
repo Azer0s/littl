@@ -1,4 +1,17 @@
 x := 12
 var y = "Hello"
-var! const = 23.2
+var! const1 = 23.2
 z := true
+
+calc := 8 - 2 * (15 - 12)
+
+curryAddition x {
+    return anonymous y {
+        return x + y
+    }
+}
+
+test {
+    add3 := curryAddition(3)
+    return add3(3)
+}

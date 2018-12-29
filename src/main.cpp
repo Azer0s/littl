@@ -5,7 +5,7 @@
 extern int yyparse();
 extern int yylex();
 extern int yylineno;
-//extern littl::SyntaxTree* root;
+extern littl::SyntaxTree* root;
 
 int main(){
     int result = yyparse();
@@ -17,8 +17,8 @@ int main(){
     }
 
     std::ofstream outputfile;
-    outputfile.open ("bin/main.cpp");
-    //outputfile << root->toCode();
+    outputfile.open ("bin/main.js");
+    outputfile << root->toCode();
     outputfile.close();
 
     std::cout << "Lines in source file: " << yylineno << std::endl;

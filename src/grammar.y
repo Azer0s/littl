@@ -6,17 +6,20 @@
     #include <iostream>
     #include <vector>
     #include <memory>
-
+    extern int yylineno;
     int yylex(void);
-    void yyerror (char const *s) {
-        fprintf (stderr, "%s\n", s);
+    void yyerror (char const *str) {
+        fprintf(stderr,"Error | Line: %d\n%s\n",yylineno,str);
     }
     extern char* yytext;
+
     littl::SyntaxTree* root;
     littl::SyntaxTree* p;
-    std::vector<littl::SyntaxTree*> mainobject;
+    std::vector<littl::SyntaxTree*> tree;
     #define YYSTYPE littl::SyntaxTree*
 %}
+
+%locations
 
 %token INT
 %token DECIMAL
@@ -25,16 +28,26 @@
 
 %token VAR
 %token CONST
-%token ANONYMOUS
 
 %token IF
 %token FOR
-%token PUT
+%token RETURN
 
 %token ASSIGN
 %token SHORTHANDASSIGN
 %token SEMICOLON
 %token COMMA
+
+%token ADD
+%token SUB
+%token MUL
+%token DIV
+
+%token LBRACE
+%token RBRACE
+
+%token LBRACKET
+%token RBRACKET
 
 %token NAME
 
@@ -43,27 +56,71 @@
 %%
 
 input:
-    program { root = new littl::Program(mainobject, $1); }
+    program { root = new littl::Program(tree); }
     ;
 
 program:
-    block program { mainobject.push_back($1); $$ = $2; }
-    | function program { $$ = new littl::Tuple($1,$2); }
+    block program { tree.insert(tree.begin(),$1); }
     | %empty { $$ = new littl::Empty();}
     ;
 
-function:
-    ;
-
 block:
-    | variable
-    | %empty
+    | variable { $$ = $1; }
+    | return { $$ = $1; }
+    | returnableBlocks { $$ = $1; }
+    | statement { $$ = $1; }
+    | block block { $$ = new littl::Tuple($1,$2); }
+    | %empty { $$ = new littl::Empty(); }
     ;
 
 variable:
-    CONST name ASSIGN literal
-    | VAR name ASSIGN literal
-    | name SHORTHANDASSIGN literal
+    CONST name ASSIGN singleValue { $$ = new littl::Variable($2,true,$4); }
+    | VAR name ASSIGN singleValue { $$ = new littl::Variable($2,false,$4); }
+    | name SHORTHANDASSIGN singleValue { $$ = new littl::Variable($1,false,$3); }
+    ;
+
+return:
+    RETURN singleValue { $$ = new littl::Return($2); }
+    | RETURN returnableBlocks { $$ = new littl::Return($2); }
+    ;
+
+//Every block I can return 
+returnableBlocks:
+    function { $$ = $1; }
+    ;
+
+statement:
+    name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
+    ;
+
+parameters:
+    singleValue { $$ = $1; }
+    | parameters COMMA singleValue { $$ =  new littl::Arguments($1,$3); }
+    ;
+
+singleValue:
+    literal { $$ = $1; }
+    | name { $$ = $1; }
+    | statement { $$ = $1; }
+    | calculation { $$ = $1; }
+    ;
+
+calculation:
+    singleValue ADD singleValue { $$ = new littl::Calculation($1,"+",$3); }
+    | singleValue SUB singleValue { $$ = new littl::Calculation($1,"-",$3); }
+    | singleValue MUL singleValue { $$ = new littl::Calculation($1,"*",$3); }
+    | singleValue DIV singleValue { $$ = new littl::Calculation($1,"/",$3); }
+    | LBRACKET calculation RBRACKET { $$ = new littl::Bracket($2); }
+    ;
+
+function:
+    name arguments LBRACE block RBRACE { $$ = new littl::Function($1,$2,$4); }
+    ;
+
+arguments:
+    name arguments { $$ = new littl::Arguments($1,$2); }
+    | name { $$ = $1; }
+    | %empty { $$ = new littl::Empty();}
     ;
 
 literal:
