@@ -6,6 +6,8 @@ len x {
     return eval("x.length")
 }
 
-for i in arr{
+it := for i in arr{
     console.log(i)
 }
+
+it()

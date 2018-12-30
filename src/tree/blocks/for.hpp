@@ -15,7 +15,7 @@ namespace littl {
                 delete block;
             };
             virtual std::string toCode() const{
-                return "for(" + var->toCode() + " in " + array->toCode() + "){\n" + block->toCode() + "}\n";
+                return "for(" + var->toCode() + " of " + array->toCode() + "){\n" + block->toCode() + "}\n";
             }
 
         private:

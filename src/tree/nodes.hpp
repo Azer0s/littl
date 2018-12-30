@@ -15,6 +15,7 @@
 #include "blocks/for.hpp"
 #include "blocks/function.hpp"
 #include "blocks/if.hpp"
+#include "blocks/returnableBlock.hpp"
 
 #include "values/array.hpp"
 #include "values/arrayAccess.hpp"

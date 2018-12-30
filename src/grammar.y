@@ -96,13 +96,17 @@ assignment:
     ;
 
 statement:
-    name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
+    name LBRACKET RBRACKET { $$ = new littl::Call($1,new littl::Empty()); }
+    | name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
     ;
 
 variable:
     CONST name ASSIGN singleValue { $$ = new littl::Variable($2,true,$4); }
     | VAR name ASSIGN singleValue { $$ = new littl::Variable($2,false,$4); }
     | name SHORTHANDASSIGN singleValue { $$ = new littl::Variable($1,false,$3); }
+    | CONST name ASSIGN returnableBlocks { $$ = new littl::Variable($2,true,$4); }
+    | VAR name ASSIGN returnableBlocks { $$ = new littl::Variable($2,false,$4); }
+    | name SHORTHANDASSIGN returnableBlocks { $$ = new littl::Variable($1,false,$3); }
     ;
 
 return:
@@ -113,7 +117,8 @@ return:
 //Every block I can return - todo wrap in function
 returnableBlocks:
     function { $$ = $1; }
-    | if { $$ = $1; }
+    | if { $$ = new littl::Returnable($1); }
+    | for { $$ = new littl::Returnable($1); }
     ;
 
 function:
