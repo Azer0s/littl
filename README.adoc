@@ -1,0 +1,115 @@
+The language isn't really all that powerful (I wrote it for a school assignment). We have variables, which we can declare with either `var`, for normal variables or `var!` for constants and there is shorthand deceleration with the `:=` operator (which doesn't require a var keyword). We won't deal with datatypes but rather let JavaScript handle that.
+
+Littl also has C-style comparison and mathematical operators. Values can be returned with the `return` keyword.
+
+==== Functions
+
+Declared like: `functionName argument1 argument2 ...`
+
+===== Example
+
+```go
+
+add x y {
+    return x + y
+}
+
+```
+
+==== For loops
+
+Declared like: `for variable in array`
+
+===== Example
+
+```go
+arr := {1,2,3,4,5}
+
+for i in arr {
+    console.log(i)
+}
+
+```
+
+==== Counted for loops
+
+Declared like: `for variableDeclaration; condition; operation`
+
+===== Example
+
+```go
+arr := {1,2,3,4,5}
+
+for var i = 0; i < arr.length; i = i + 1{
+    console.log(i)
+}
+
+for ;true; {
+    console.log("Hello")
+}
+
+```
+
+
+==== If condition
+
+Declared like: `if condition`
+
+===== Example
+
+```go
+a := 5
+
+if a < 10 {
+    console.log("a is smaller than 10")
+}
+
+```
+
+These statements have C-like blocks (curly brackets).
+
+Since Littl transpiles to JavaScript, one can use JavaScript functions like `console.log`.
+
+A recursive fibonacci sequence would look like so:
+
+```go
+fib n {
+    if n == 0 or n == 1 {
+        put n
+    }
+
+    return fib(n-1) + fib(n-2)
+}
+
+x := fib(12)
+
+console.log(x)
+
+```
+
+Since Littl is part functional, every scope, be it `if`, `for` or a function scope, can be put into a variable or returned.
+
+```go
+count := for i := 0; i != 10; i++ {
+    console.log(i)
+}
+
+count()
+
+var! two = 2
+twoSmallerThanThree := if two < 3 {
+    return true
+}
+
+twoSmallerThanThree()
+
+curryAddition := anonymous x {
+    return anonymous y {
+        return x + y
+    }
+}
+
+add3 := curryAddition(3)
+console.log(add3(2))
+
+```
