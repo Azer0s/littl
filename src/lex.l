@@ -16,6 +16,7 @@ VAR                             var
 CONST                           var!
 
 IF                              if
+ELSE                            else
 FOR                             for
 RETURN                          return
 IMPORT                          import
@@ -65,6 +66,7 @@ FEED                            \n
 {CONST}                         return CONST;
 
 {IF}                            return IF;
+{ELSE}                          return ELSE;
 {FOR}                           return FOR;
 {RETURN}                        return RETURN;
 {IMPORT}                        return IMPORT;

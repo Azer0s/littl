@@ -2,22 +2,25 @@
 #include "../syntaxtree.hpp"
 
 namespace littl {
-    class If : public SyntaxTree{
+    class IfElse : public SyntaxTree{
         public:
-            If(SyntaxTree* condition, SyntaxTree* block){
+            IfElse(SyntaxTree* condition, SyntaxTree* block, SyntaxTree* elseBlock){
                 this->condition = condition;
                 this->block = block;
+                this->elseBlock = elseBlock;
             }
-            virtual ~If(){
+            virtual ~IfElse(){
                 delete condition;
                 delete block;
+                delete elseBlock;
             };
             virtual std::string toCode() const{
-                return "if(" + condition->toCode() + "){\n" + block->toCode() + "}\n";
+                return "if(" + condition->toCode() + "){\n" + block->toCode() + "}\nelse{\n" + elseBlock->toCode() + "}\n";
             }
 
         private:
             SyntaxTree* condition;
             SyntaxTree* block;
+            SyntaxTree* elseBlock;
     };
 }

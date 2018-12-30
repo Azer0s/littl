@@ -17,6 +17,7 @@
 #include "blocks/for.hpp"
 #include "blocks/function.hpp"
 #include "blocks/if.hpp"
+#include "blocks/ifElse.hpp"
 #include "blocks/returnableBlock.hpp"
 
 #include "values/array.hpp"

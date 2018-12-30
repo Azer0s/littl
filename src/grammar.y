@@ -31,6 +31,7 @@
 %token CONST
 
 %token IF
+%token ELSE
 %token FOR
 %token RETURN
 %token IMPORT
@@ -133,6 +134,7 @@ function:
 
 if:
     IF singleValue LBRACE block RBRACE { $$ = new littl::If($2,$4); }
+    | IF singleValue LBRACE block RBRACE ELSE LBRACE block RBRACE { $$ = new littl::IfElse($2,$4,$8); }
     ;
 
 for:
