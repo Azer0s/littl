@@ -7,11 +7,12 @@
     #include <vector>
     #include <memory>
     extern int yylineno;
+    extern char* yytext;
+
     int yylex(void);
     void yyerror (char const *str) {
-        fprintf(stderr,"Error | Line: %d\n%s\n",yylineno,str);
+        fprintf(stderr,"Error | Line: %d\n%s\n%s\n",yylineno,str,yytext);
     }
-    extern char* yytext;
 
     littl::SyntaxTree* root;
     littl::SyntaxTree* p;
@@ -43,6 +44,17 @@
 %token MUL
 %token DIV
 
+%token SMALLER
+%token BIGGER
+%token SMALLEREQUALS
+%token BIGGEREQUALS
+
+%token EQUALS
+%token NOT
+
+%token OR
+%token AND
+
 %token LBRACE
 %token RBRACE
 
@@ -65,12 +77,21 @@ program:
     ;
 
 block:
+    assignment { $$ = $1; }
+    | statement { $$ = new littl::Terminated($1); }
     | variable { $$ = $1; }
     | return { $$ = $1; }
     | returnableBlocks { $$ = $1; }
-    | statement { $$ = $1; }
     | block block { $$ = new littl::Tuple($1,$2); }
     | %empty { $$ = new littl::Empty(); }
+    ;
+
+assignment:
+    name ASSIGN singleValue { $$ = new littl::Assignment($1,$3); }
+    ;
+
+statement:
+    name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
     ;
 
 variable:
@@ -87,22 +108,22 @@ return:
 //Every block I can return 
 returnableBlocks:
     function { $$ = $1; }
+    | if { $$ = $1; }
     ;
 
-statement:
-    name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
+function:
+    name arguments LBRACE block RBRACE { $$ = new littl::Function($1,$2,$4); }
     ;
 
-parameters:
-    singleValue { $$ = $1; }
-    | parameters COMMA singleValue { $$ =  new littl::Arguments($1,$3); }
+if:
+    IF singleValue LBRACE block RBRACE { $$ = new littl::If($2,$3); }
     ;
 
 singleValue:
-    literal { $$ = $1; }
-    | name { $$ = $1; }
+    calculation { $$ = $1; }
+    | literal { $$ = $1; }
     | statement { $$ = $1; }
-    | calculation { $$ = $1; }
+    | name { $$ = $1; }
     ;
 
 calculation:
@@ -110,17 +131,26 @@ calculation:
     | singleValue SUB singleValue { $$ = new littl::Calculation($1,"-",$3); }
     | singleValue MUL singleValue { $$ = new littl::Calculation($1,"*",$3); }
     | singleValue DIV singleValue { $$ = new littl::Calculation($1,"/",$3); }
+    | singleValue SMALLER singleValue { $$ = new littl::Calculation($1,"<",$3); }
+    | singleValue BIGGER singleValue { $$ = new littl::Calculation($1,">",$3); }
+    | singleValue SMALLEREQUALS singleValue { $$ = new littl::Calculation($1,"<=",$3); }
+    | singleValue BIGGEREQUALS singleValue { $$ = new littl::Calculation($1,">=",$3); }
+    | singleValue EQUALS singleValue { $$ = new littl::Calculation($1,"==",$3); }
+    | singleValue NOT singleValue { $$ = new littl::Calculation($1,"!=",$3); }
+    | singleValue OR singleValue { $$ = new littl::Calculation($1,"||",$3); }
+    | singleValue AND singleValue { $$ = new littl::Calculation($1,"&&",$3); }
     | LBRACKET calculation RBRACKET { $$ = new littl::Bracket($2); }
     ;
 
-function:
-    name arguments LBRACE block RBRACE { $$ = new littl::Function($1,$2,$4); }
+parameters:
+    singleValue { $$ = $1; }
+    | parameters COMMA singleValue { $$ =  new littl::Arguments($1,$3); }
     ;
 
 arguments:
     name arguments { $$ = new littl::Arguments($1,$2); }
     | name { $$ = $1; }
-    | %empty { $$ = new littl::Empty();}
+    | %empty { $$ = new littl::Empty(); }
     ;
 
 literal:

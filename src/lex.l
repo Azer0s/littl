@@ -5,8 +5,8 @@
     #include "grammar.tab.h"
 %}
 
-INT                             [1-9][0-9]*
-DECIMAL                         [1-9][0-9]*\.[0-9]+
+INT                             [0-9]*
+DECIMAL                         [0-9]*\.[0-9]+
 STRING                          \"[^\n"]*\"
 BOOL                            true|false
 
@@ -28,6 +28,17 @@ ADD                             "+"
 SUB                             "-"
 MUL                             "*"
 DIV                             "/"
+
+SMALLER                         "<"
+BIGGER                          ">"
+SMALLEREQUALS                   "<="
+BIGGEREQUALS                    ">="
+
+EQUALS                          is
+NOT                             not
+
+OR                              or
+AND                             and
 
 LBRACE                          "{"
 RBRACE                          "}"
@@ -61,6 +72,17 @@ FEED                            \n
 {SUB}                           return SUB;
 {MUL}                           return MUL;
 {DIV}                           return DIV;
+
+{SMALLER}                       return SMALLER;
+{BIGGER}                        return BIGGER;
+{SMALLEREQUALS}                 return SMALLEREQUALS;
+{BIGGEREQUALS}                  return BIGGEREQUALS;
+
+{EQUALS}                        return EQUALS;
+{NOT}                           return NOT;
+
+{OR}                            return OR;
+{AND}                           return AND;
 
 {LBRACE}                        return LBRACE;
 {RBRACE}                        return RBRACE;

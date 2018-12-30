@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <regex>
 #include "tree/nodes.hpp"
 
 extern int yyparse();
@@ -18,7 +19,7 @@ int main(){
 
     std::ofstream outputfile;
     outputfile.open ("bin/main.js");
-    outputfile << root->toCode();
+    outputfile << std::regex_replace(std::regex_replace(root->toCode(), std::regex(";;"), ";"), std::regex("\\{;"), "{");
     outputfile.close();
 
     std::cout << "Lines in source file: " << yylineno << std::endl;

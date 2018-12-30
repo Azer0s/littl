@@ -13,7 +13,7 @@ namespace littl {
                 delete args;
             };
             virtual std::string toCode() const{
-                return name->toCode() + "(" + args->toCode() + ");\n";
+                return name->toCode() + "(" + args->toCode() + ")";
             }
 
         private:

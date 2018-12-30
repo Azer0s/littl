@@ -15,3 +15,16 @@ test {
     add3 := curryAddition(3)
     return add3(3)
 }
+
+x = n is 0 and n not 0
+x = n not 1
+
+console.log("Hello")
+console.log("Hello")
+
+return fib(n-1) + fib(n-2)
+
+console.log("Hello")
+console.log("Hello")
+
+return fib(n-1) + fib(n-2)

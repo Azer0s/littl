@@ -3,14 +3,17 @@
 #include "tuple.hpp"
 
 #include "base/arguments.hpp"
+#include "base/assignment.hpp"
 #include "base/bracket.hpp"
 #include "base/calculation.hpp"
 #include "base/call.hpp"
 #include "base/name.hpp"
 #include "base/return.hpp"
+#include "base/terminated.hpp"
 #include "base/variable.hpp"
 
 #include "blocks/function.hpp"
+#include "blocks/if.hpp"
 
 #include "values/empty.hpp"
 #include "values/littlBool.hpp"

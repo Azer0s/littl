@@ -2,21 +2,21 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include "nodes.hpp"
+#include "../syntaxtree.hpp"
 
 namespace littl {
-    class Tuple : public SyntaxTree{
+    class Assignment : public SyntaxTree{
         public:
-            Tuple(SyntaxTree* val, SyntaxTree* vals){
+            Assignment(SyntaxTree* val, SyntaxTree* vals){
                 tree = val;
                 subtree = vals;
             };
-            virtual ~Tuple(){
+            virtual ~Assignment(){
                 delete tree;
                 delete subtree;
             };
             virtual std::string toCode() const{
-                return tree->toCode() + subtree->toCode();
+                return tree->toCode() + "=" + subtree->toCode() + ";\n";
             };
 
         private:

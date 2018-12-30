@@ -23,7 +23,7 @@ namespace littl {
                     fName = name->toCode();
                 }
 
-                std::string code = "function " + fName + "(" + input->toCode() + "){\n" + block->toCode() + "};\n";
+                std::string code = "function " + fName + "(" + input->toCode() + "){\n" + block->toCode() + "}\n";
                 return code;
             }
 
