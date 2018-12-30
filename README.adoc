@@ -1,6 +1,6 @@
 ### littl is a small, procedural/semi-functional language
 
-The language isn't really all that powerful (I wrote it for a school assignment). We have variables, which we can declare with either `var`, for normal variables or `var!` for constants and there is shorthand deceleration with the `:=` operator (which doesn't require a var keyword). We won't deal with datatypes but rather let JavaScript handle that.
+The language isn't really all that powerful (I wrote it for a school assignment). We have variables, which we can declare with either `var`, for normal variables or `var!` for constants and there is shorthand declaration with the `:=` operator (which doesn't require a var keyword). We won't deal with datatypes but rather let JavaScript handle that.
 
 Littl also has C-style comparison and mathematical operators. Values can be returned with the `return` keyword.
 
