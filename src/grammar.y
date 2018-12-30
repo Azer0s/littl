@@ -33,9 +33,11 @@
 %token IF
 %token FOR
 %token RETURN
+%token IMPORT
 
 %token ASSIGN
 %token SHORTHANDASSIGN
+%token SEMICOLON
 %token COMMA
 
 %token ADD
@@ -80,7 +82,7 @@ program:
     ;
 
 block:
-    assignment { $$ = $1; }
+    assignment { $$ = new littl::Terminated($1); }
     | statement { $$ = new littl::Terminated($1); }
     | variable { $$ = $1; }
     | return { $$ = $1; }
@@ -93,6 +95,10 @@ block:
 
 assignment:
     name ASSIGN singleValue { $$ = new littl::Assignment($1,$3); }
+    ;
+
+import:
+    IMPORT stringL { $$ = new littl::Import($2); }
     ;
 
 statement:
@@ -130,7 +136,10 @@ if:
     ;
 
 for:
-    FOR name IN name LBRACE block RBRACE { $$ = new littl::For($2,$4,$6); }
+    FOR variable SEMICOLON singleValue SEMICOLON assignment LBRACE block RBRACE { $$ = new littl::CountedFor($2,$4,$6,$8); }
+    | FOR variable SEMICOLON singleValue SEMICOLON singleValue LBRACE block RBRACE { $$ = new littl::CountedFor($2,$4,$6,$8); }
+    | FOR SEMICOLON singleValue SEMICOLON LBRACE block RBRACE { $$ = new littl::CountedFor(new littl::Name(";"),$3,new littl::Empty(),$6); }
+    | FOR name IN name LBRACE block RBRACE { $$ = new littl::For($2,$4,$6); }
     ;
 
 singleValue:
@@ -171,8 +180,12 @@ literal:
     DECIMAL { $$ = new littl::LittlDec(yytext); }
     | INT { $$ = new littl::LittlInt(yytext); }
     | BOOL { $$ = new littl::LittlBool(yytext); }
-    | STRING { $$ = new littl::LittlString(yytext); }
+    | stringL { $$ = $1; }
     | array { $$ = $1; }
+    ;
+
+stringL:
+    STRING { $$ = new littl::LittlString(yytext); }
     ;
 
 array:

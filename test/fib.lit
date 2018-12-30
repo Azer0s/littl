@@ -7,3 +7,4 @@ fib n {
 }
 
 x := fib(12)
+console.log(x)

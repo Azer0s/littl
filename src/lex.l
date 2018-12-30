@@ -5,8 +5,8 @@
     #include "grammar.tab.h"
 %}
 
-INT                             [0-9]*
-DECIMAL                         [0-9]*\.[0-9]+
+INT                             \(-[0-9]*\)|[0-9]*
+DECIMAL                         \(-[0-9]*\.[0-9]+\)|[0-9]*\.[0-9]+
 STRING                          \"[^\n"]*\"
 BOOL                            true|false
 
@@ -18,6 +18,7 @@ CONST                           var!
 IF                              if
 FOR                             for
 RETURN                          return
+IMPORT                          import
 
 ASSIGN                          "="
 SHORTHANDASSIGN                 ":="
@@ -66,9 +67,11 @@ FEED                            \n
 {IF}                            return IF;
 {FOR}                           return FOR;
 {RETURN}                        return RETURN;
+{IMPORT}                        return IMPORT;
 
 {ASSIGN}                        return ASSIGN;
 {SHORTHANDASSIGN}               return SHORTHANDASSIGN;
+{SEMICOLON}                     return SEMICOLON;
 {COMMA}                         return COMMA;
 
 {ADD}                           return ADD;

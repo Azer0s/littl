@@ -1,0 +1,15 @@
+arr := {1,2,3,4,5,6}
+
+it := for i in arr{
+    console.log(i)
+}
+
+for var i = 0; i < arr.length; i = i + 1{
+    console.log(i)
+}
+
+for ;true;{
+    console.log("Hello")
+}
+
+x = 1 - (-2)

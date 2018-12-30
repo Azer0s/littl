@@ -1,0 +1,9 @@
+
+import "console"
+
+var! two = 2
+twoSmallerThanThree := if two < 3 {
+    return true
+}
+
+print("Hello")

@@ -16,7 +16,7 @@ namespace littl {
                 delete subtree;
             };
             virtual std::string toCode() const{
-                return tree->toCode() + "=" + subtree->toCode() + ";\n";
+                return tree->toCode() + "=" + subtree->toCode();
             };
 
         private:
