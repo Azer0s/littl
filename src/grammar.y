@@ -36,7 +36,6 @@
 
 %token ASSIGN
 %token SHORTHANDASSIGN
-%token SEMICOLON
 %token COMMA
 
 %token ADD
@@ -54,12 +53,16 @@
 
 %token OR
 %token AND
+%token IN
 
 %token LBRACE
 %token RBRACE
 
 %token LBRACKET
 %token RBRACKET
+
+%token LSQUARE
+%token RSQUARE
 
 %token NAME
 
@@ -81,7 +84,9 @@ block:
     | statement { $$ = new littl::Terminated($1); }
     | variable { $$ = $1; }
     | return { $$ = $1; }
-    | returnableBlocks { $$ = $1; }
+    | function { $$ = $1; }
+    | if { $$ = $1; }
+    | for {$$ = $1; }
     | block block { $$ = new littl::Tuple($1,$2); }
     | %empty { $$ = new littl::Empty(); }
     ;
@@ -105,7 +110,7 @@ return:
     | RETURN returnableBlocks { $$ = new littl::Return($2); }
     ;
 
-//Every block I can return 
+//Every block I can return - todo wrap in function
 returnableBlocks:
     function { $$ = $1; }
     | if { $$ = $1; }
@@ -116,7 +121,11 @@ function:
     ;
 
 if:
-    IF singleValue LBRACE block RBRACE { $$ = new littl::If($2,$3); }
+    IF singleValue LBRACE block RBRACE { $$ = new littl::If($2,$4); }
+    ;
+
+for:
+    FOR name IN name LBRACE block RBRACE { $$ = new littl::For($2,$4,$6); }
     ;
 
 singleValue:
@@ -158,8 +167,15 @@ literal:
     | INT { $$ = new littl::LittlInt(yytext); }
     | BOOL { $$ = new littl::LittlBool(yytext); }
     | STRING { $$ = new littl::LittlString(yytext); }
+    | array { $$ = $1; }
+    ;
+
+array:
+    LBRACE RBRACE { $$ = new littl::Array(new littl::Empty()); }
+    | LBRACE parameters RBRACE { $$ = new littl::Array($2); }
     ;
 
 name:
-    NAME { $$ = new littl::Name(yytext); }
+    name LSQUARE singleValue RSQUARE { $$ = new littl::ArrayAccess($1,$3); } 
+    | NAME { $$ = new littl::Name(yytext); }
     ;

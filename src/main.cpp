@@ -19,7 +19,10 @@ int main(){
 
     std::ofstream outputfile;
     outputfile.open ("bin/main.js");
-    outputfile << std::regex_replace(std::regex_replace(root->toCode(), std::regex(";;"), ";"), std::regex("\\{;"), "{");
+
+    std::string code = "function native(x){return eval(x)};\n";
+    code += std::regex_replace(std::regex_replace(root->toCode(), std::regex(";;"), ";"), std::regex("\\{;"), "{");
+    outputfile << code;
     outputfile.close();
 
     std::cout << "Lines in source file: " << yylineno << std::endl;

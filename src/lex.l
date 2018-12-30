@@ -39,12 +39,16 @@ NOT                             not
 
 OR                              or
 AND                             and
+IN                              in
 
 LBRACE                          "{"
 RBRACE                          "}"
 
 LBRACKET                        "("
 RBRACKET                        ")"
+
+LSQUARE                         "["
+RSQUARE                         "]"
 
 WHITESPACE                      [ \r\t\v\f]
 FEED                            \n
@@ -65,7 +69,6 @@ FEED                            \n
 
 {ASSIGN}                        return ASSIGN;
 {SHORTHANDASSIGN}               return SHORTHANDASSIGN;
-{SEMICOLON}                     return SEMICOLON;
 {COMMA}                         return COMMA;
 
 {ADD}                           return ADD;
@@ -83,12 +86,16 @@ FEED                            \n
 
 {OR}                            return OR;
 {AND}                           return AND;
+{IN}                            return IN;
 
 {LBRACE}                        return LBRACE;
 {RBRACE}                        return RBRACE;
 
 {LBRACKET}                      return LBRACKET;
 {RBRACKET}                      return RBRACKET;
+
+{LSQUARE}                       return LSQUARE;
+{RSQUARE}                       return RSQUARE;
 
 {NAME}                          return NAME;
 {WHITESPACE}

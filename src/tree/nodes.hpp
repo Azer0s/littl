@@ -12,9 +12,12 @@
 #include "base/terminated.hpp"
 #include "base/variable.hpp"
 
+#include "blocks/for.hpp"
 #include "blocks/function.hpp"
 #include "blocks/if.hpp"
 
+#include "values/array.hpp"
+#include "values/arrayAccess.hpp"
 #include "values/empty.hpp"
 #include "values/littlBool.hpp"
 #include "values/littlDec.hpp"
