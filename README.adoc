@@ -57,6 +57,8 @@ for ;true; {
 
 Declared like: `if condition`
 
+Optional: `else`
+
 ===== Example
 
 ```go
@@ -64,6 +66,9 @@ a := 5
 
 if a < 10 {
     console.log("a is smaller than 10")
+}
+else{
+  console.log("a is bigger than 10")
 }
 
 ```
