@@ -97,7 +97,7 @@ console.log(x)
 Since Littl is part functional, every scope, be it `if`, `for` or a function scope, can be put into a variable or returned.
 
 ```go
-count := for i := 0; i != 10; i++ {
+count := for i := 0; i not 10; i = i + 1 {
     console.log(i)
 }
 
