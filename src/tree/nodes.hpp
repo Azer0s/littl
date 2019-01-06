@@ -14,10 +14,13 @@
 #include "base/variable.hpp"
 
 #include "blocks/countedFor.hpp"
+#include "blocks/elseIf.hpp"
 #include "blocks/for.hpp"
 #include "blocks/function.hpp"
 #include "blocks/if.hpp"
 #include "blocks/ifElse.hpp"
+#include "blocks/ifElseIf.hpp"
+#include "blocks/ifElseIfElse.hpp"
 #include "blocks/returnableBlock.hpp"
 
 #include "values/array.hpp"

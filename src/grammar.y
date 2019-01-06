@@ -135,6 +135,13 @@ function:
 if:
     IF singleValue LBRACE block RBRACE { $$ = new littl::If($2,$4); }
     | IF singleValue LBRACE block RBRACE ELSE LBRACE block RBRACE { $$ = new littl::IfElse($2,$4,$8); }
+    | IF singleValue LBRACE block RBRACE elseIf { $$ = new littl::IfElseIf($2,$4,$6); }
+    | IF singleValue LBRACE block RBRACE elseIf ELSE LBRACE block RBRACE { $$ = new littl::IfElseIfElse($2,$4,$6,$9); }
+    ;
+
+elseIf:
+    elseIf elseIf { $$ =  new littl::Tuple($1,$2); }
+    | OR IF singleValue LBRACE block RBRACE { $$ = new littl::ElseIf($3,$5); }
     ;
 
 for:

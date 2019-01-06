@@ -15,4 +15,22 @@ twoSmallerThanThreeElse := if two < 3 {
     return false
 }
 
+if two < 3 {
+    return true
+}or if false {
+    return false
+}or if true {
+    return false
+}
+
+if two < 3 {
+    return true
+}or if false {
+    return false
+}or if true {
+    return false
+}else{
+    return "hello"
+}
+
 print("Hello")
