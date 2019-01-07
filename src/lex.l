@@ -10,6 +10,8 @@ DECIMAL                         \(-[0-9]*\.[0-9]+\)|[0-9]*\.[0-9]+
 STRING                          \"[^\n"]*\"
 BOOL                            true|false
 
+NATIVE                          "\$".*"\$"
+
 NAME                            [a-zA-Z][a-zA-Z0-9._]*
 
 VAR                             var
@@ -56,6 +58,8 @@ WHITESPACE                      [ \r\t\v\f]
 FEED                            \n
 
 %%
+
+{NATIVE}                        return NATIVE;
 
 {STRING}                        return STRING;
 {INT}                           return INT;

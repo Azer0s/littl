@@ -9,6 +9,7 @@
 #include "base/call.hpp"
 #include "base/import.hpp"
 #include "base/name.hpp"
+#include "base/native.hpp"
 #include "base/return.hpp"
 #include "base/terminated.hpp"
 #include "base/variable.hpp"

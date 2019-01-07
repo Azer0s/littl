@@ -22,6 +22,8 @@
 
 %locations
 
+%token NATIVE
+
 %token INT
 %token DECIMAL
 %token STRING
@@ -105,6 +107,7 @@ import:
 statement:
     name LBRACKET RBRACKET { $$ = new littl::Call($1,new littl::Empty()); }
     | name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
+    | NATIVE { $$ = new littl::Native(yytext); }
     ;
 
 variable:
