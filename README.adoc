@@ -18,6 +18,26 @@ add x y {
 
 ```
 
+==== Native statement
+
+Used like: `\$ statement \$`
+
+```go
+
+f x{
+    console.log(x)
+}
+
+f(\$new TextGenerator().next()\$)
+
+```
+
+==== Comparison
+
+is, not | Equality
+
+<,<=,>,>= | Greater/Smaller
+
 ==== For loops
 
 Declared like: `for variable in array`
