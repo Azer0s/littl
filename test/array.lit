@@ -11,3 +11,9 @@ it := for i in arr{
 }
 
 it()
+
+f x {
+    console.log(x)
+}
+
+f(\$new Randomizer().nextInt()\$)
