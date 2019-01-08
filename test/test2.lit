@@ -2,6 +2,7 @@ count := for i := 0; i not 10; i = i + 1 {
     console.log(i)
 }
 
+console.log("\nFor loops:")
 count()
 
 var! two = 2
@@ -9,8 +10,12 @@ twoSmallerThanThree := if two < 3 {
     return true
 }
 
-twoSmallerThanThree()
+console.log("\nIf condition:")
+if twoSmallerThanThree() {
+    console.log("is true")
+}
 
+console.log("\nCurrying function")
 curryAddition := anonymous x {
     return anonymous y {
         return x + y
@@ -18,4 +23,5 @@ curryAddition := anonymous x {
 }
 
 add3 := curryAddition(3)
+console.log("Curry addition (+3) =")
 console.log(add3(2))
