@@ -105,9 +105,14 @@ import:
     ;
 
 statement:
-    name LBRACKET RBRACKET { $$ = new littl::Call($1,new littl::Empty()); }
-    | name LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
+    statementName LBRACKET RBRACKET { $$ = new littl::Call($1,new littl::Empty()); }
+    | statementName LBRACKET parameters RBRACKET { $$ = new littl::Call($1,$3); }
     | NATIVE { $$ = new littl::Native(yytext); }
+    ;
+
+statementName:
+    statement { $$ = $1; }
+    | name { $$ = $1; }
     ;
 
 variable:
@@ -177,9 +182,14 @@ calculation:
     | LBRACKET calculation RBRACKET { $$ = new littl::Bracket($2); }
     ;
 
-parameters:
+parameterValues:
     singleValue { $$ = $1; }
-    | parameters COMMA singleValue { $$ =  new littl::Arguments($1,$3); }
+    | returnableBlocks { $$ = $1; }
+    ;
+
+parameters:
+    parameterValues { $$ = $1; }
+    | parameters COMMA parameterValues { $$ =  new littl::Arguments($1,$3); }
     ;
 
 arguments:

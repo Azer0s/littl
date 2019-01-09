@@ -17,3 +17,28 @@ f x {
 }
 
 f(\$new Randomizer().nextInt()\$)
+
+f()()()
+
+c[2]()
+
+c[2](anonymous x {
+    return "hello world"
+})
+
+hello(if true{
+    return true
+})
+
+test(for a in arr{
+    console.log(a)
+})
+
+list := {
+    anonymous x {
+        return "0"
+    },
+    anonymous x {
+        return "1"
+    }
+}

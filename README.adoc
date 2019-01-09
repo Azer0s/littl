@@ -1,14 +1,25 @@
-### littl is a small, procedural/semi-functional language
+## 👌🔥 littl - a small, procedural/semi-functional language
 
 The language isn't really all that powerful (I wrote it for a school assignment). We have variables, which we can declare with either `var`, for normal variables or `var!` for constants and there is shorthand declaration with the `:=` operator (which doesn't require a var keyword). We won't deal with datatypes but rather let JavaScript handle that.
 
 Littl also has C-style comparison and mathematical operators. Values can be returned with the `return` keyword.
 
-==== Functions
+=== Use it
+
+```bash
+git clone https://github.com/Azer0s/littl.git
+cd littl
+make
+make run/path/to/file
+```
+
+== Basic syntax
+
+=== Functions
 
 Declared like: `functionName argument1 argument2 ...`
 
-===== Example
+==== Example
 
 ```go
 
@@ -18,9 +29,11 @@ add x y {
 
 ```
 
-==== Native statement
+=== Native statement
 
 Used like: `\$ statement \$`
+
+==== Example
 
 ```go
 
@@ -32,17 +45,17 @@ f(\$new TextGenerator().next()\$)
 
 ```
 
-==== Comparison
+=== Comparison
 
 is, not | Equality
 
 <,<=,>,>= | Greater/Smaller
 
-==== For loops
+=== For loops
 
 Declared like: `for variable in array`
 
-===== Example
+==== Example
 
 ```go
 arr := {1,2,3,4,5}
@@ -53,11 +66,11 @@ for i in arr {
 
 ```
 
-==== Counted for loops
+=== Counted for loops
 
 Declared like: `for variableDeclaration; condition; operation`
 
-===== Example
+==== Example
 
 ```go
 arr := {1,2,3,4,5}
@@ -73,7 +86,7 @@ for ;true; {
 ```
 
 
-==== If condition
+=== If condition
 
 Declared like: `if condition`
 
@@ -81,7 +94,7 @@ Optional: `or if`
 
 Optional: `else`
 
-===== Example
+==== Example
 
 ```go
 a := 5
