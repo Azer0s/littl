@@ -1,4 +1,4 @@
-# 👌🔥 littl
+# 🔥👌 littl
 
 ## A small, procedural/semi-functional language
 
