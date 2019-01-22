@@ -20,7 +20,7 @@ int main(){
     std::ofstream outputfile;
     outputfile.open ("out.js");
 
-    std::string code = "function native(x){return eval(x);};\n";
+    std::string code = "//littl compiler output\n//Copyright 2018-present Ariel Simulevski\n";
     code +=  root->toCode();
     outputfile << code;
     outputfile.close();

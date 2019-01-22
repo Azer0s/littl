@@ -116,12 +116,12 @@ statementName:
     ;
 
 variable:
-    CONST name ASSIGN singleValue { $$ = new littl::Variable($2,true,$4); }
-    | VAR name ASSIGN singleValue { $$ = new littl::Variable($2,false,$4); }
-    | name SHORTHANDASSIGN singleValue { $$ = new littl::Variable($1,false,$3); }
-    | CONST name ASSIGN returnableBlocks { $$ = new littl::Variable($2,true,$4); }
+    CONST name ASSIGN returnableBlocks { $$ = new littl::Variable($2,true,$4); }
     | VAR name ASSIGN returnableBlocks { $$ = new littl::Variable($2,false,$4); }
     | name SHORTHANDASSIGN returnableBlocks { $$ = new littl::Variable($1,false,$3); }
+    | CONST name ASSIGN singleValue { $$ = new littl::Variable($2,true,$4); }
+    | VAR name ASSIGN singleValue { $$ = new littl::Variable($2,false,$4); }
+    | name SHORTHANDASSIGN singleValue { $$ = new littl::Variable($1,false,$3); }
     ;
 
 return:
@@ -183,8 +183,8 @@ calculation:
     ;
 
 parameterValues:
-    singleValue { $$ = $1; }
-    | returnableBlocks { $$ = $1; }
+    returnableBlocks { $$ = $1; }
+    | singleValue { $$ = $1; }
     ;
 
 parameters:
