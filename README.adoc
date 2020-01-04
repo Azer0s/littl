@@ -86,13 +86,13 @@ Optional: `else`
 a := 5
 
 if a < 10 {
-    console.log("a is smaller than 10")
+    print("a is smaller than 10")
 }
 or if a > 21 {
-    console.log("a is bigger than 21")
+    print("a is bigger than 21")
 }
 else{
-  console.log("a is bigger than 10")
+    print("a is bigger than 10")
 }
 
 ```
