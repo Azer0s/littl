@@ -117,11 +117,7 @@ x := fib(12)
 print(x)
 ```
 
-
-```go
-
 Littl also supports anonymous functions and currying
-
 ```go
 curryAddition := anonymous x {
     return anonymous y {
