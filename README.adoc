@@ -119,8 +119,8 @@ print(x)
 
 Littl also supports anonymous functions and currying
 ```go
-curryAddition := anonymous x {
-    return anonymous y {
+curryAddition := anonymous(x u8) fun {
+    return anonymous(y u8) u16 {
         return x + y
     }
 }
