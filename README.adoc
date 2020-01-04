@@ -25,7 +25,7 @@ Declared like: `functionName(argument1 datatype,  argument2 datytpe...) return_t
 
 ```go
 
-add(x u8, y u8) u16 {
+fun add(x u8, y u8) u16 {
     return x + y
 }
 
@@ -104,7 +104,7 @@ Since Littl transpiles to JavaScript, one can use JavaScript functions like `con
 A recursive fibonacci sequence would look like so:
 
 ```go
-fib(n u8) u32 {
+fun fib(n u8) u32 {
     if n is 0 or n is 1 {
         return n
     }
@@ -119,8 +119,8 @@ print(x)
 
 Littl also supports anonymous functions and currying
 ```go
-curryAddition := anonymous(x u8) fun {
-    return anonymous(y u8) u16 {
+curryAddition := fun (x u8) fun {
+    return fun (y u8) u16 {
         return x + y
     }
 }
