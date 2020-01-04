@@ -117,16 +117,26 @@ x := fib(12)
 print(x)
 ```
 
-Littl also supports anonymous functions and currying
+Littl also supports anonymous functions
 ```kotlin
-curryAddition := fun (x u8) fun {
-    return fun (y u8) u16 {
-        return x + y
-    }
+addFn := fun (y fun|u8|u16, x u8) u16 {
+    return y(x)
 }
 
-var add3 fun
+foo := addFn(fun(i u8) u16 {
+    return x + 3
+}, 3)
 
-add3 = curryAddition(3)
-print(add3(2))
+fun add200(i u8) u16 {
+    return i + 200
+}
+
+var add fun|i32,i32|i32
+add = fun(a i32, b i32) i32 {
+    return a + b
+}
+
+print(foo) //6
+print(addFn(add200, 55)) //255
+print(add(10,-5)) //5
 ```
