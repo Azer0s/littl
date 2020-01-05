@@ -51,6 +51,19 @@ print("Hello")
 goto start
 ```
 
+=== Mixins
+
+Through mixins, one can combine Persephone code with little
+
+```go
+var input string
+
+if doRead {
+    mixin(syscall 0x20)
+    mixin(store nameof(input))
+}
+```
+
 === For loops
 
 Declared like: `for variable in range`
