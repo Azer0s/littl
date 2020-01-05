@@ -35,7 +35,21 @@ fun add(x u8, y u8) u16 {
 
 is, not | Equality
 
-<,<=,>,>= | Greater/Smaller
+`<,<=,>,>=` | Greater/Smaller
+
+=== String concatenations
+
+```go
+print("Hello" <> "World!")
+```
+
+===Labels
+
+```go
+start:
+print("Hello")
+goto start
+```
 
 === For loops
 
@@ -65,8 +79,8 @@ for var i u8 = 0; i < len(arr); i = i + 1{
     print(i)
 }
 
-for ;true; {
-    console.log("Hello")
+loop {
+    print("Hello")
 }
 
 ```
@@ -75,9 +89,6 @@ for ;true; {
 === If condition
 
 Declared like: `if condition`
-
-Optional: `or if`
-
 Optional: `else`
 
 ==== Example
@@ -87,12 +98,12 @@ a := 5
 
 if a < 10 {
     print("a is smaller than 10")
-}
-or if a > 21 {
-    print("a is bigger than 21")
-}
-else{
-    print("a is bigger than 10")
+} else {
+    if a > 21 {
+        print("a is bigger than 21")
+    } else {
+        print("a is bigger than 10")
+    }
 }
 
 ```
