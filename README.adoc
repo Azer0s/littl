@@ -2,7 +2,7 @@
 
 ## A small, procedural/semi-functional language
 
-Originally this language was written for a school assignment, now the reiterated version of it serves as a poc for Persephone. We have variables, which we can declare with either `var`, for mutable variables or `var!` for immutables and there is shorthand declaration with the `:=` operator (which doesn't require a var keyword). There are a couple of datatypes: `fun`, `u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `f32`, `f64`, `bool` and `string`.
+Originally this language was written for a school assignment, now the reiterated version of it serves as a poc for Persephone. We have variables, which we can declare with `var`. There is shorthand declaration with the `:=` operator (which doesn't require a var keyword). There are a couple of datatypes: `fun`, `u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `f32`, `f64`, `bool` and `string`.
 
 Littl also has C-style comparison and mathematical operators. Values can be returned with the `return` keyword.
 
