@@ -53,38 +53,16 @@ goto start
 
 === For loops
 
-Declared like: `for variable in array`
+Declared like: `for variable in range`
 
 ==== Example
 
 ```kotlin
-arr := {1,2,3,4,5}
-
-for var i u8 in arr {
+for var i u8 in 0..10 {
     print(i)
 }
 
 ```
-
-=== Counted for loops
-
-Declared like: `for variableDeclaration; condition; operation`
-
-==== Example
-
-```go
-arr := {1,2,3,4,5}
-
-for var i u8 = 0; i < len(arr); i = i + 1{
-    print(i)
-}
-
-loop {
-    print("Hello")
-}
-
-```
-
 
 === If condition
 
