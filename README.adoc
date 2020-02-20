@@ -31,21 +31,7 @@ add x y {
 
 ```
 
-=== Native statement
 
-Used like: `\$ statement \$`
-
-==== Example
-
-```go
-
-f x{
-    console.log(x)
-}
-
-f(\$new TextGenerator().next()\$)
-
-```
 
 === Comparison
 
