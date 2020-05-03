@@ -51,18 +51,35 @@ print("Hello")
 goto start
 ```
 
-=== Mixins
-
-Through mixins, one can combine Persephone code with little
+=== Structs
 
 ```go
-var input string
-
-if doRead {
-    mixin(syscall 0x20)
-    mixin(store nameof(input))
+struct Car {
+    make string
+    name string
 }
+
+var myCar struct::Car = {
+    name: "R8"
+    make: "Audi"
+}
+
+print(myCar->make)
 ```
+
+=== Pointers & casts
+
+By default, memory is automatically managed, you can, however, allocate memory dynamically if so desired.
+The `[]` just provides offset for a pointer. The allocated memory will still be garbage collected.
+
+```go
+arr := malloc(size(int) * 4).(int*)
+
+arr[0] = 42 //same as writing 4[arr]
+
+var arrPtr int** = addr(arr)
+```
+
 
 === For loops
 
@@ -84,7 +101,7 @@ Optional: `else`
 
 ==== Example
 
-```kotlin
+```go
 a := 5
 
 if a < 10 {
