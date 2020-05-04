@@ -80,6 +80,13 @@ arr[0] = 42 //same as writing 4[arr]
 var arrPtr int** = addr(arr)
 ```
 
+=== While loops
+
+```kotlin
+while isTrue?() {
+    print("Hello")
+}
+```
 
 === For loops
 
@@ -88,10 +95,19 @@ Declared like: `for variable in range`
 ==== Example
 
 ```kotlin
+@import("stdlib")
+@import("stdio")
+
 for var i u8 in 0..10 {
     print(i)
 }
 
+a := malloc(size(int) * 10)
+
+//len is a shorthand for size(a) / size(int)
+for var i u32 in 0..len(a) {
+    print(itoa(a[0]))
+}
 ```
 
 === If condition
