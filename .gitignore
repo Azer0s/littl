@@ -35,3 +35,9 @@ bin/
 *.out
 *.app
 out\.js
+
+.idea/
+
+cmake-build-debug/
+
+.DS_Store

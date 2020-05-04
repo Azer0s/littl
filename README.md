@@ -6,7 +6,7 @@ Originally this language was written for a school assignment, now the reiterated
 
 Littl also has C-style comparison and mathematical operators. Values can be returned with the `return` keyword.
 
-=== Use it
+### Use it
 
 ```bash
 git clone https://github.com/Azer0s/littl.git
@@ -15,13 +15,9 @@ make
 make run path/to/file
 ```
 
-== Basic syntax
+## Basic syntax
 
-=== Functions
-
-Declared like: `functionName(argument1 datatype,  argument2 datytpe...) return_type`
-
-==== Example
+### Functions
 
 ```kotlin
 
@@ -31,19 +27,19 @@ fun add(x u8, y u8) u16 {
 
 ```
 
-=== Comparison
+### Comparison
 
 is, not | Equality
 
 `<,<=,>,>=` | Greater/Smaller
 
-=== String concatenations
+### String concatenations
 
 ```go
 print("Hello" <> "World!")
 ```
 
-=== Labels
+### Labels
 
 ```go
 start:
@@ -51,7 +47,7 @@ print("Hello")
 goto start
 ```
 
-=== Structs
+### Structs
 
 ```go
 struct Car {
@@ -67,7 +63,7 @@ var myCar struct::Car = {
 print(myCar->make)
 ```
 
-=== Pointers & casts
+### Pointers & casts
 
 By default, memory is automatically managed, you can, however, allocate memory dynamically if so desired.
 The `[]` just provides offset for a pointer. The allocated memory will still be garbage collected.
@@ -80,7 +76,7 @@ arr[0] = 42 //same as writing 4[arr]
 var arrPtr int** = addr(arr)
 ```
 
-=== While loops
+### While loops
 
 ```kotlin
 while isTrue?() {
@@ -88,11 +84,7 @@ while isTrue?() {
 }
 ```
 
-=== For loops
-
-Declared like: `for variable in range`
-
-==== Example
+### For loops
 
 ```kotlin
 @import("stdlib")
@@ -110,12 +102,7 @@ for var i u32 in 0..len(a) {
 }
 ```
 
-=== If condition
-
-Declared like: `if condition`
-Optional: `else`
-
-==== Example
+### If condition
 
 ```go
 a := 5
