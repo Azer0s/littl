@@ -33,12 +33,6 @@ is, not | Equality
 
 `<,<=,>,>=` | Greater/Smaller
 
-### String concatenations
-
-```go
-print("Hello" <> "World!")
-```
-
 ### Labels
 
 ```go
